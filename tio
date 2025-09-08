@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consultorio de Psicología — Atención Profesional</title>
+  <meta name="description" content="Consultorio de psicología: terapia individual, de pareja y para adolescentes. Atención confidencial, ética y basada en evidencia." />
+  <meta name="author" content="" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Consultorio de Psicología — Atención Profesional" />
+  <meta property="og:description" content="Terapia individual, de pareja y para adolescentes. Reserva tu sesión hoy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:locale" content="es_CR" />
+  <!-- Favicon (reemplaza por tus archivos) -->
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --bg-soft:#111827;     /* gray-900 */
+      --card:#111827;
+      --text:#e5e7eb;        /* gray-200 */
+      --muted:#9ca3af;       /* gray-400 */
+      --brand:#22c55e;       /* emerald-500 */
+      --brand-600:#16a34a;   /* emerald-600 */
+      --accent:#38bdf8;      /* sky-400 */
+      --ring:#22c55e33;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --radius-lg: 26px;
+      --container: 1120px;
+    }
+
+    /* Reset + base */
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, #0b2239, transparent),
+                  radial-gradient(900px 600px at 10% -20%, #052e1d, transparent),
+                  var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    a { color: var(--accent); text-decoration: none }
+    img { max-width:100%; height:auto; display:block }
+    .container{ width: 100%; max-width: var(--container); margin-inline:auto; padding-inline: 20px }
+    .btn{ display:inline-flex; align-items:center; gap:.6rem; border:1px solid transparent; padding:.85rem 1.2rem; border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--brand), var(--brand-600)); color:white; font-weight:600; box-shadow: var(--shadow);
+      cursor:pointer; transition: transform .12s ease, filter .2s ease; }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05) }
+    .btn.secondary{ background: #0b1220; border-color:#1f2937 }
+    .badge{ display:inline-block; padding:.35rem .7rem; border:1px solid #1f2937; background:#0b1220; color:var(--muted); border-radius: 999px; font-size:.85rem }
+
+    /* Header */
+    header{
+      position: sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(10,16,30,.85), rgba(10,16,30,.55)); border-bottom: 1px solid #1f2937;
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; height:64px }
+    .brand{ display:flex; align-items:center; gap:.8rem; font-weight:700; letter-spacing:.2px }
+    .brand .logo{ width:36px; height:36px; border-radius:10px; background: radial-gradient(circle at 30% 30%, #34d399, #10b981 55%, #052e1d);
+      box-shadow: 0 10px 20px rgba(16,185,129,.25) }
+    nav ul{ display:flex; gap:1.2rem; list-style:none; margin:0; padding:0 }
+    nav a{ color:var(--text); opacity:.85 }
+    nav a:hover{ opacity:1 }
+
+    /* Hero */
+    .hero{ position:relative; padding: 96px 0 56px }
+    .hero-grid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:48px; align-items:center }
+    .hero h1{ font-size: clamp(2rem, 4vw, 3rem); line-height:1.15; margin:0 0 12px; letter-spacing:.2px }
+    .hero p{ color:var(--muted); margin:0 0 20px }
+    .hero-card{ background:linear-gradient(180deg, #0b1220, #0a1426); border:1px solid #1f2937; border-radius: var(--radius-lg); padding:22px; box-shadow: var(--shadow) }
+    .hero .bullets{ display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:12px; margin:18px 0 26px }
+    .hero .bullets span{ background:#0b1220; border:1px solid #1f2937; border-radius: 999px; padding:.55rem .8rem; font-size:.95rem; color:#a7f3d0 }
+    .hero-visual{ position:relative }
+    .hero-visual .card{ background:linear-gradient(180deg, #091427, #0b1220); border:1px solid #1f2937; border-radius: var(--radius-lg); padding:18px; box-shadow: var(--shadow) }
+    .stat{ display:flex; align-items:center; gap:.8rem; padding:12px; border-radius:14px; background:#0b1220; border:1px solid #1f2937; color:#a7f3d0 }
+
+    /* Sections */
+    section{ padding: 72px 0 }
+    .section-title{ font-size: clamp(1.35rem, 2.6vw, 2rem); margin:0 0 8px }
+    .section-sub{ color:var(--muted); margin:0 0 28px }
+
+    /* Services */
+    .grid-3{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:20px }
+    .card{ background:linear-gradient(180deg, #0b1220, #0a1426); border:1px solid #1f2937; border-radius: var(--radius); padding:20px }
+    .card h3{ margin:0 0 8px }
+    .card p{ color:var(--muted); margin:0 }
+
+    /* Approach timeline */
+    .timeline{ position:relative; margin-top: 10px }
+    .timeline::before{ content:""; position:absolute; left:14px; top:0; bottom:0; width:2px; background:#1f2937 }
+    .step{ display:grid; grid-template-columns: 32px 1fr; gap:16px; margin-bottom:18px }
+    .dot{ width:28px; height:28px; border-radius:999px; background: radial-gradient(circle at 30% 30%, #34d399, #10b981); border:2px solid #064e3b; box-shadow:0 0 0 4px #052e1d }
+
+    /* Testimonials */
+    .testimonials{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:20px }
+    blockquote{ margin:0; background:#0b1220; border:1px solid #1f2937; border-radius: var(--radius); padding:18px }
+    blockquote footer{ margin-top:10px; color:#a7f3d0; font-weight:600 }
+
+    /* FAQ */
+    .faq-item{ border:1px solid #1f2937; border-radius: var(--radius); background:#0b1220; margin-bottom:12px; overflow:hidden }
+    .faq-q{ width:100%; text-align:left; background:transparent; color:var(--text); padding:16px 18px; border:0; font-size:1rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer }
+    .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; padding:0 18px; color:var(--muted) }
+    .faq-item.open .faq-a{ max-height: 240px; padding: 0 18px 16px }
+
+    /* Contact */
+    .contact{ display:grid; grid-template-columns: .9fr 1.1fr; gap:22px; align-items:start }
+    form{ display:grid; gap:12px }
+    input, textarea, select{ background:#0b1220; border:1px solid #1f2937; color:var(--text); padding:.9rem 1rem; border-radius: 14px; outline: none; }
+    input:focus, textarea:focus, select:focus{ border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring) }
+    .notice{ font-size:.9rem; color:var(--muted) }
+
+    /* Footer */
+    footer{ border-top:1px solid #1f2937; padding:26px 0 56px; color:var(--muted) }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid{ grid-template-columns: 1fr }
+      .grid-3{ grid-template-columns: 1fr }
+      .testimonials{ grid-template-columns: 1fr }
+      .contact{ grid-template-columns: 1fr }
+      nav ul{ display:none }
+    }
+
+    /* Skip link */
+    .skip-link{ position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden }
+    .skip-link:focus{ left:16px; top:16px; width:auto; height:auto; background:#111827; padding:.6rem .8rem; border-radius:10px; border:1px solid #1f2937 }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Consultorio de Psicología",
+    "medicalSpecialty": "Psychology",
+    "url": "https://tudominio.com",
+    "logo": "https://tudominio.com/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CR",
+      "addressLocality": "San José",
+      "streetAddress": "Dirección de ejemplo 123"
+    },
+    "telephone": "+506 0000-0000",
+    "priceRange": "₡₡₡",
+    "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-13:00"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Consultorio de Psicología</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#enfoque">Enfoque</a></li>
+          <li><a href="#acerca">Acerca de</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="#contacto" class="btn" aria-label="Reservar sesión">Reservar</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="badge">Atención confidencial • Terapia basada en evidencia</span>
+          <h1>Espacio seguro para tu bienestar emocional</h1>
+          <p>Apoyo profesional en ansiedad, depresión, estrés, relaciones y desarrollo personal. Sesiones presenciales y en línea.</p>
+          <div class="bullets">
+            <span>✓ Terapia Individual</span>
+            <span>✓ Terapia de Pareja</span>
+            <span>✓ Adolescentes</span>
+            <span>✓ Evaluaciones Psicológicas</span>
+          </div>
+          <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+            <a class="btn" href="#contacto">Agenda tu primera sesión</a>
+            <a class="btn secondary" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="card" aria-label="Indicadores">
+            <div style="display:grid; gap:12px">
+              <div class="stat"><strong>+7 años</strong> de experiencia clínica</div>
+              <div class="stat"><strong>100% confidencial</strong> y ético</div>
+              <div class="stat"><strong>Modalidad híbrida</strong> presencial/online</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" aria-labelledby="servicios-title">
+      <div class="container">
+        <h2 id="servicios-title" class="section-title">Servicios</h2>
+        <p class="section-sub">Intervenciones personalizadas con un enfoque humano y basado en evidencia.</p>
+        <div class="grid-3">
+          <article class="card" aria-label="Terapia individual">
+            <h3>Terapia Individual</h3>
+            <p>Ansiedad, depresión, manejo del estrés, autoestima, duelos y crecimiento personal.</p>
+          </article>
+          <article class="card" aria-label="Terapia de pareja">
+            <h3>Terapia de Pareja</h3>
+            <p>Comunicación, confianza, resolución de conflictos y reconstrucción del vínculo.</p>
+          </article>
+          <article class="card" aria-label="Adolescentes">
+            <h3>Adolescentes</h3>
+            <p>Acompañamiento en cambios emocionales, habilidades sociales y orientación vocacional.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enfoque / Proceso -->
+    <section id="enfoque" aria-labelledby="enfoque-title">
+      <div class="container">
+        <h2 id="enfoque-title" class="section-title">Cómo trabajamos</h2>
+        <p class="section-sub">Proceso claro para que te sientas acompañado/a desde el primer contacto.</p>
+        <div class="timeline">
+          <div class="step">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>1. Primera entrevista</h3>
+              <p class="section-sub">Exploramos tu motivo de consulta y definimos objetivos.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>2. Plan terapéutico</h3>
+              <p class="section-sub">Diseño de intervención (TCC, enfoque sistémico, ACT, etc.).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>3. Sesiones</h3>
+              <p class="section-sub">Encuentros semanales o quincenales según tus necesidades.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>4. Seguimiento</h3>
+              <p class="section-sub">Monitoreo de avances y prevención de recaídas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Acerca de -->
+    <section id="acerca" aria-labelledby="acerca-title">
+      <div class="container">
+        <h2 id="acerca-title" class="section-title">Acerca de mí</h2>
+        <div class="card" style="display:grid; grid-template-columns: 140px 1fr; gap:16px; align-items:center">
+          <img src="https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=400&auto=format&fit=crop" alt="Foto de la psicóloga" style="border-radius:14px; border:1px solid #1f2937" />
+          <div>
+            <h3>Lic. Nombre Apellido, Psicóloga</h3>
+            <p class="section-sub">Colegiada N° 00000 • Universidad X • Enfoque principal: Terapia Cognitivo-Conductual y ACT.</p>
+            <p>Acompaño a personas a construir una vida con sentido. Mi práctica integra calidez humana, ética profesional y herramientas basadas en evidencia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" aria-labelledby="testimonios-title">
+      <div class="container">
+        <h2 id="testimonios-title" class="section-title">Lo que dicen los pacientes</h2>
+        <div class="testimonials">
+          <blockquote>
+            “Desde la primera sesión me sentí escuchada y segura. He aprendido a manejar mi ansiedad.”
+            <footer>— A.M.</footer>
+          </blockquote>
+          <blockquote>
+            “Nuestra relación mejoró muchísimo. Las herramientas prácticas hicieron la diferencia.”
+            <footer>— J. y F.</footer>
+          </blockquote>
+          <blockquote>
+            “Agradezco la empatía y profesionalismo. Recomiendo el consultorio con los ojos cerrados.”
+            <footer>— C.R.</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section-title">Preguntas frecuentes</h2>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Cómo reservo una cita? <span>+</span></button>
+          <div class="faq-a"><p>Puedes usar el formulario de contacto, escribir al WhatsApp o llamar al número indicado. Te responderemos para coordinar fecha y modalidad.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Atienden en modalidad en línea? <span>+</span></button>
+          <div class="faq-a"><p>Sí, realizamos sesiones por videollamada con la misma calidad y confidencialidad.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">¿Trabajan con seguros? <span>+</span></button>
+          <div class="faq-a"><p>Emitimos facturas para reembolso con tu aseguradora, según condiciones de tu póliza.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" aria-labelledby="contacto-title">
+      <div class="container contact">
+        <div>
+          <h2 id="contacto-title" class="section-title">Contacto y reservas</h2>
+          <p class="section-sub">Completa el formulario o escríbenos por WhatsApp. Te responderemos pronto.</p>
+          <form id="contact-form" novalidate>
+            <input type="text" name="nombre" placeholder="Nombre y apellidos" aria-label="Nombre" required />
+            <input type="email" name="email" placeholder="Correo electrónico" aria-label="Correo" required />
+            <input type="tel" name="telefono" placeholder="Teléfono (ej. +506 8888-8888)" aria-label="Teléfono" />
+            <select name="servicio" aria-label="Servicio de interés">
+              <option value="General">Motivo de consulta (general)</option>
+              <option value="Terapia Individual">Terapia Individual</option>
+              <option value="Terapia de Pareja">Terapia de Pareja</option>
+              <option value="Adolescentes">Adolescentes</option>
+            </select>
+            <textarea name="mensaje" rows="4" placeholder="Cuéntanos brevemente tu motivo de consulta" aria-label="Mensaje" required></textarea>
+            <label style="display:flex; gap:.6rem; align-items:center; font-size:.95rem; color:var(--muted)">
+              <input type="checkbox" id="consent" required />
+              Acepto el tratamiento de mis datos para responder a mi solicitud.
+            </label>
+            <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+              <button class="btn" type="submit">Enviar mensaje</button>
+              <a class="btn secondary" id="mailto-fallback" href="mailto:contacto@tudominio.com?subject=Reserva%20de%20cita">Enviar por correo</a>
+            </div>
+            <p id="form-status" class="notice" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div>
+          <div class="card" aria-label="Información de contacto">
+            <h3>Información</h3>
+            <p class="section-sub">San José, Costa Rica • Barrio/Edificio • Parqueo disponible</p>
+            <ul>
+              <li>📞 <a href="tel:+50600000000">+506 0000-0000</a></li>
+              <li>📧 <a href="mailto:contacto@tudominio.com">contacto@tudominio.com</a></li>
+              <li>💬 <a href="https://wa.me/50600000000" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top:12px">
+            <h3>Ubicación</h3>
+            <div style="aspect-ratio:16/9; background:#0b1220; border:1px solid #1f2937; border-radius:12px; overflow:hidden">
+              <!-- Inserta aquí tu iframe de Google Maps -->
+              <iframe title="Mapa" width="100%" height="100%" style="border:0"
+                loading="lazy" allowfullscreen
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0!2d-84.09!3d9.93!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1ses!2scr!4v0000000000"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Consultorio de Psicología. Todos los derechos reservados.</div>
+      <div>
+        <a href="#">Aviso de privacidad</a> · <a href="#">Términos de servicio</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/50600000000" target="_blank" rel="noopener" aria-label="WhatsApp"
+     style="position:fixed; right:18px; bottom:18px; width:56px; height:56px; border-radius:999px; display:grid; place-items:center; background:linear-gradient(180deg,#22c55e,#16a34a); color:#fff; box-shadow: var(--shadow); font-weight:700;">
+    WA
+  </a>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+
+    // FAQ acordeón
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const btn = item.querySelector('.faq-q');
+      btn.addEventListener('click', ()=>{
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    });
+
+    // Validación básica de formulario (sin backend)
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(form);
+      const required = ['nombre','email','mensaje'];
+      for(const k of required){ if(!data.get(k) || String(data.get(k)).trim()===''){ status.textContent = 'Por favor completa los campos obligatorios.'; return; } }
+      if(!document.getElementById('consent').checked){ status.textContent = 'Debes aceptar el tratamiento de datos.'; return; }
+      // Simula envío
+      status.textContent = '¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.';
+      form.reset();
+    });
+
+    // Genera enlace mailto con el contenido del formulario por si el usuario prefiere correo
+    const mailLink = document.getElementById('mailto-fallback');
+    form.addEventListener('input', ()=>{
+      const nombre = encodeURIComponent(form.nombre.value || '');
+      const servicio = encodeURIComponent(form.servicio.value || 'General');
+      const cuerpo = encodeURIComponent(`Nombre: ${form.nombre.value}\nEmail: ${form.email.value}\nTeléfono: ${form.telefono.value}\nServicio: ${form.servicio.value}\n\nMensaje:\n${form.mensaje.value}`);
+      mailLink.href = `mailto:contacto@tudominio.com?subject=Consulta%20-%20${servicio}%20-%20${nombre}&body=${cuerpo}`;
+    });
+  </script>
+</body>
+</html>
